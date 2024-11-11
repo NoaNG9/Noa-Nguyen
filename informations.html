@@ -91,6 +91,14 @@
             height: 25px;
             cursor: pointer;
         }
+
+        /* Style des drapeaux */
+        .flag {
+            width: 20px;
+            height: 20px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
     </style>
 </head>
 <body>
@@ -103,30 +111,33 @@
     <!-- Body -->
     <div class="form-container">
         <p><label for="prenom">Prénom : </label><span class="info">Noa</span></p>
-        <p><label for="nom">Nom : </label><span class="info">Nguyen-Heberle</span></p>
-        <p><label for="date-naissance">Date de naissance : </label><span class="info">1er Janvier 2000</span></p>
-        <p><label for="college">Collège : </label><span class="info">Collège XYZ</span></p>
-        <p><label for="lycee">Lycée : </label><span class="info">Lycée ABC</span></p>
-        <p><label for="etudes-superieures">Études supérieures : </label><span class="info">Université DEF (Licence en Informatique)</span></p>
+        <p><label for="nom">Nom : </label><span class="info">Nguyen--Heberle</span></p>
+        <p><label for="date-naissance">Date de naissance : </label><span class="info">28 Avril 2003</span></p>
+        <p><label for="college">Collège : </label><span class="info">Collège Jean-Mermoz (Yutz 57)</span></p>
+        <p><label for="lycee">Lycée : </label><span class="info">Lycée Hélène-Boucher (Thionville 57)</span></p>
+        <p><label for="etudes-superieures">Études supérieures : </label><span class="info">JUNIA ISEN (Institut Supérieur en Electronique et Numérique)</span></p>
 
         <div class="cv-section">
             <p><label for="cv-francais">Télécharger mon CV en français :</label></p>
             <a href="CV NOA.pdf.pdf" download="CV_Noa_Nguyen-Heberle_Français.pdf">
                 <button>CV en Français</button>
             </a>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg" alt="Drapeau français" class="flag">
         </div>
+
         <div class="cv-section">
             <p><label for="cv-anglais">Télécharger mon CV en anglais :</label></p>
             <a href="CV NOA EN sans B2.pdf" download="CV_Noa_Nguyen-Heberle_English.pdf">
                 <button>CV in English</button>
             </a>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_Kingdom.svg" alt="Drapeau anglais" class="flag">
         </div>
     </div>
 
     <!-- Button maison pour revenir à la page d'accueil -->
     <div class="home-button">
         <a href="index.html">
-            <img src="home.png" alt="Home">
+            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="Home">
         </a>
     </div>
 
