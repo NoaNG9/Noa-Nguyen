@@ -100,6 +100,24 @@
             height: 25px;
             cursor: pointer;
         }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .home-button img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .home-button img:hover {
+            transform: scale(1.1);
+        }
     </style>
 </head>
 <body>
@@ -117,7 +135,7 @@
     <!-- Button maison pour revenir à la page d'accueil -->
     <div class="home-button">
         <a href="index.html">
-            <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="Home" style="width: 40px; height: 40px; cursor: pointer;">
+            <img src="home.png" alt="Home" style="width: 40px; height: 40px; cursor: pointer;">
         </a>
     </div>
 
