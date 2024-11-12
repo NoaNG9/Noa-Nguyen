@@ -27,31 +27,6 @@
             position: relative;
         }
 
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .buttons a {
-            text-decoration: none;
-        }
-
-        .buttons button {
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            background-color: #767676;
-            color: white;
-            transition: background-color 0.3s;
-        }
-
-        .buttons button:hover {
-            background-color: #000000;
-        }
-
         /* Cartes des projets */
         .projects-grid {
             display: grid;
@@ -114,6 +89,24 @@
             width: 25px;
             height: 25px;
             cursor: pointer;
+        }
+
+        .home-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .home-button img {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .home-button img:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
