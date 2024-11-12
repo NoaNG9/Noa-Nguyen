@@ -41,25 +41,44 @@
             cursor: pointer;
         }
 
-        /* Section du projet */
-        .project-section {
-            width: 80%;
-            max-width: 600px;
+        /* Section vidéo */
+        .video-section {
+            margin-top: 20px;
             text-align: center;
-            margin: 40px 0;
+            width: 100%;
+            max-width: 600px;
         }
 
-        .project-section img {
-            width: 100%;
+        .video {
+            width: 70%; /* Réduit la taille de la vidéo */
+            max-width: 500px; /* Taille maximale pour les grands écrans */
             height: auto;
+            object-fit: cover;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
-        .project-description {
+        /* Section rapport de projet */
+        .report-section {
+            width: 80%;
+            max-width: 800px;
+            margin: 40px 0;
+            font-size: 1em;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+        }
+
+        .report-section h2, .report-section h3 {
+            color: #000;
+            font-weight: bold;
             margin-top: 20px;
-            font-size: 1.2em;
-            color: #555;
+        }
+
+        .report-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            margin-top: 10px;
         }
 
         /* Footer */
@@ -90,23 +109,6 @@
             height: 25px;
             cursor: pointer;
         }
-
-        /* Section vidéo */
-        .video-section {
-            margin-top: 20px;
-            text-align: center;
-            width: 100%;
-            max-width: 600px;
-        }
-
-        .video {
-            width: 70%; /* Réduit la taille de la vidéo */
-            max-width: 500px; /* Taille maximale pour les grands écrans */
-            height: auto;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
     </style>
 </head>
 <body>
@@ -129,6 +131,51 @@
         <div class="project-description">
             Description détaillée du projet 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.
         </div>
+    </div>
+
+    <!-- Section rapport de projet -->
+    <div class="report-section">
+        <h2>1. Introduction</h2>
+        <p>Le projet s'inscrit dans le cadre de l'application des systèmes embarqués, visant à développer un dispositif autonome et performant. Nous avons réalisé une voiture télécommandée en suivant des étapes méthodiques, avec une attention particulière à la coordination entre les aspects matériels et logiciels. Ce projet a permis de maîtriser les technologies modernes en électronique embarquée et de comprendre les interactions entre capteurs, actionneurs, et modules de communication sans fil.</p>
+
+        <h2>2. Objectifs du Projet</h2>
+        <ul>
+            <li>Créer une voiture télécommandée capable de se déplacer, de changer de direction, et de transmettre des données visuelles en temps réel.</li>
+            <li>Apprendre l'implémentation pratique des composants électroniques dans un système autonome.</li>
+            <li>Concevoir un schéma électronique, construire le prototype, tester et optimiser la voiture pour atteindre les performances attendues.</li>
+        </ul>
+
+        <h2>3. Processus de Développement</h2>
+
+        <h3>3.1 Recherche</h3>
+        <p>La première phase consistait à étudier les composants nécessaires, en mettant l'accent sur la compatibilité et la performance. Les recherches portaient sur les servomoteurs, moteurs CC, caméras, et modules de communication sans fil, en plus des exigences pour la carte électronique.</p>
+
+        <h3>3.2 Conception du Schéma Électronique</h3>
+        <p>À partir de la recherche, un schéma électronique a été conçu avec le logiciel Altium, prenant en compte les connexions entre le microcontrôleur, les capteurs, et les actionneurs. Nous avons également géré les interfaces de tension et les protocoles de communication pour garantir l’efficacité du système.</p>
+
+        <h3>3.3 Assemblage et Construction</h3>
+        <ul>
+            <li><strong>Mécanique</strong> : Conception et impression d'un modèle 3D pour le châssis, utilisation de matériaux robustes (PLA et TPU) pour assurer la durabilité.</li>
+            <li><strong>Électronique</strong> : Assemblage de la carte électronique dans le FabLab de l’ISEN, usinage et soudure des composants.</li>
+        </ul>
+
+        <h3>3.4 Tests et Optimisation</h3>
+        <p>Des tests rigoureux ont été menés pour vérifier la réactivité des capteurs, la précision des actionneurs, et la stabilité de la communication sans fil. Chaque composant a été ajusté pour assurer une performance fluide du système global.</p>
+
+        <h2>4. Composants Utilisés</h2>
+        <ul>
+            <li><strong>Actionneurs</strong> : Servo-moteur MG995 pour le contrôle directionnel, moteur CC pour la propulsion, tous deux gérés par des signaux PWM pour un contrôle précis de la vitesse et de l’orientation.</li>
+            <li><strong>Capteurs</strong> : Caméra OV7670 pour la capture vidéo en temps réel, permettant de transmettre des images au contrôleur de la base via la communication sans fil.</li>
+            <li><strong>Guidage</strong> : Module NRF24L01 pour la transmission sans fil (2,4 GHz) entre la voiture et la station de contrôle, offrant une communication bidirectionnelle avec une portée satisfaisante pour un projet de télécommande.</li>
+        </ul>
+
+        <h2>5. Bilan du Projet</h2>
+        <p>La voiture télécommandée a été réalisée avec succès, remplissant toutes les fonctions de base spécifiées. La coordination entre les actionneurs et les capteurs a permis de contrôler efficacement la direction et la vitesse, et le module de guidage NRF24L01 a permis une communication stable. Le projet a mis en valeur l’importance d’une planification rigoureuse et d’une méthodologie bien structurée pour mener à bien un projet en systèmes embarqués.</p>
+
+        <h2>6. Perspectives et Améliorations</h2>
+        <p>Ce projet pourrait être étendu en intégrant des capteurs supplémentaires, comme des capteurs ultrasoniques pour éviter les obstacles, ou en développant une application de commande mobile pour un contrôle en temps réel depuis un smartphone.</p>
+
+        <p>En conclusion, ce projet de voiture télécommandée a non seulement permis d’appliquer des connaissances théoriques, mais également d’acquérir des compétences pratiques en conception de systèmes embarqués.</p>
     </div>
     
     <!-- Footer -->
