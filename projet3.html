@@ -41,6 +41,34 @@
             cursor: pointer;
         }
 
+        /* Section info projet */
+        .project-info {
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .project-info-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .project-info-item img {
+            width: 40px;
+            height: 40px;
+            margin-right: 15px;
+        }
+
+        .project-info-text {
+            font-size: 1.2em;
+            color: #333;
+        }
+
         /* Section vidéo */
         .video-section {
             margin-top: 20px;
@@ -123,6 +151,23 @@
         VOITURE TELECOMMANDEE
     </header>
 
+    <!-- Section info projet -->
+    <div class="project-info">
+        <div class="project-info-item">
+            <img src="target.png" alt="Objectif">
+            <div class="project-info-text">Objectif : Réaliser une voiture télécommandée autonome et performante.</div>
+        </div>
+        <div class="project-info-item">
+            <img src="clock.png" alt="Temps nécessaire">
+            <div class="project-info-text">Temps nécessaire : 3 mois pour compléter le projet.</div>
+        </div>
+        <div class="project-info-item">
+            <img src="laptop.png" alt="Langages utilisés">
+            <div class="project-info-text">Langages utilisés : C++, Python pour la programmation embarquée.</div>
+        </div>
+    </div>
+
+    <!-- Section vidéo -->
     <div class="video-section">
         <video class="video" autoplay muted loop controls>
             <source src="Vidéo_voiture-télécommandée.mp4" type="video/mp4">
@@ -174,7 +219,7 @@
 
         <p>En conclusion, ce projet de voiture télécommandée a non seulement permis d’appliquer des connaissances théoriques, mais également d’acquérir des compétences pratiques en conception de systèmes embarqués.</p>
     </div>
-    
+
     <!-- Footer -->
     <footer>
         <div class="contact-title">Me contacter</div>
