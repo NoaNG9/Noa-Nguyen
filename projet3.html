@@ -88,6 +88,19 @@
             height: 25px;
             cursor: pointer;
         }
+
+        /* Section vidéo */
+        .video-section {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .video {
+            width: 600px; /* Taille de la vidéo, ajustable */
+            max-width: 90%; /* Adapte la taille à l'écran si trop petit */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 <body>
@@ -102,14 +115,16 @@
         VOITURE TELECOMMANDEE
     </header>
 
-    <!-- Section du projet -->
-    <div class="project-section">
-        <video src="Vidéo_voiture_télécommandée.mp4" alt="Projet 1">
+    <div class="video-section">
+        <video class="video" autoplay muted loop controls>
+            <source src="Vidéo_voiture_télécommandée.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
         <div class="project-description">
             Description détaillée du projet 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum.
         </div>
     </div>
-
+    
     <!-- Footer -->
     <footer>
         <div class="contact-title">Me contacter</div>
