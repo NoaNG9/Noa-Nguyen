@@ -131,29 +131,18 @@
         /* Robot */
         #robot-container {
             position: fixed;
-            bottom: -9%;
-            /* Ajoute un petit espace au-dessus du footer */
-            left: -20%;
-            /* Place le robot à gauche */
+            bottom: 20px;
+            right: 20px;
             z-index: 100;
-            display: none;
-            /* Cacher par défaut */
+            display: none; /* Cacher par défaut */
             cursor: pointer;
-            width: 900px;
-            /* Taille du conteneur égale à l'image */
-            height: 500px;
-            /* Taille du conteneur égale à l'image */
         }
 
-        /* Réduction de l'espace autour de l'image du robot */
         #robot-container img {
-            width: 100%;
-            /* L'image prend toute la taille du conteneur */
-            height: 100%;
-            /* L'image prend toute la taille du conteneur */
-            object-fit: cover;
-            /* Garder le ratio de l'image sans déformation */
+            width: 100px;
+            height: 100px;
         }
+
     </style>
 </head>
 
@@ -197,21 +186,16 @@
         </div>
     </footer>
 
-    <!-- Robot -->
-    <div id="robot-container">
-        <img src="MEDIA/robot_reload_video_intro.png" alt="Robot" id="robot-image">
-    </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
             const robotContainer = document.getElementById('robot-container');
             const robotImage = document.getElementById('robot-image');
-
+    
             // Vérifie si l'utilisateur a déjà vu la vidéo (clé dans localStorage)
             const hasSeenIntro = localStorage.getItem('hasSeenIntro');
-
+    
             if (hasSeenIntro) {
                 // Si la clé existe, masque directement la vidéo et affiche le site
                 introVideoContainer.style.display = 'none';
@@ -221,19 +205,19 @@
                 introVideo.addEventListener('timeupdate', () => {
                     const videoDuration = introVideo.duration;
                     const currentTime = introVideo.currentTime;
-
+    
                     // Commence le fondu 2 secondes avant la fin
                     if (videoDuration - currentTime <= 1) {
                         introVideoContainer.style.opacity = '0';
                     }
                 });
-
+    
                 // Masque complètement la vidéo après la transition
                 introVideoContainer.addEventListener('transitionend', () => {
                     introVideoContainer.style.display = 'none';
                     robotContainer.style.display = 'block'; // Affiche le robot
                 });
-
+    
                 // Ajoute la clé dans localStorage une fois la vidéo terminée
                 introVideo.addEventListener('ended', () => {
                     localStorage.setItem('hasSeenIntro', 'true');
