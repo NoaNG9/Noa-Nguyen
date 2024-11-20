@@ -178,14 +178,15 @@
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
     
-            // Vérifie si l'utilisateur a déjà vu la vidéo (clé dans localStorage)
-            const hasSeenIntro = localStorage.getItem('hasSeenIntro');
+            // Vérifie si l'URL contient le paramètre "skipIntro"
+            const urlParams = new URLSearchParams(window.location.search);
+            const skipIntro = urlParams.get('skipIntro');
     
-            if (hasSeenIntro) {
-                // Si la clé existe, masque directement la vidéo et affiche le site
+            if (skipIntro === 'true') {
+                // Si le paramètre est présent, masque la vidéo directement
                 introVideoContainer.style.display = 'none';
             } else {
-                // Sinon, joue la vidéo d'introduction
+                // Sinon, joue la vidéo normalement
                 introVideo.addEventListener('timeupdate', () => {
                     const videoDuration = introVideo.duration;
                     const currentTime = introVideo.currentTime;
@@ -208,6 +209,7 @@
             }
         });
     </script>
+    
     
     
 
