@@ -22,10 +22,18 @@
             width: 100%;
             background-color: #000000;
             color: white;
-            text-align: center;
             padding: 20px 0;
             font-size: 2.5em;
             font-weight: bold;
+
+            display: flex;
+            /* Active Flexbox */
+            justify-content: center;
+            /* Centre horizontalement */
+            align-items: center;
+            /* Centre verticalement */
+            position: relative;
+            /* Permet de positionner les éléments à l'intérieur si nécessaire */
         }
 
         /* Body */
@@ -110,7 +118,6 @@
             width: 100%;
             height: 100%;
             z-index: 1000;
-            /* Par-dessus tout */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -128,21 +135,30 @@
             object-fit: cover;
         }
 
-        /* Robot */
-        #robot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
-            display: none; /* Cacher par défaut */
+        #revoir-video-button {
+            position: absolute;
+            /* Place le bouton indépendamment des autres éléments */
+            left: 10px;
+            /* Optionnel : garder une distance à gauche si besoin */
+            top: 50%;
+            /* Centre verticalement par rapport au header */
+            transform: translateY(-50%);
+            /* Ajuste pour centrer parfaitement verticalement */
+            padding: 5px 7px;
+            font-size: 0.5em;
+            /* Ajuste la taille du texte */
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
+            background-color: #767676;
+            color: white;
+            transition: background-color 0.3s ease;
         }
 
-        #robot-container img {
-            width: 100px;
-            height: 100px;
-        }
 
+        #revoir-video-button:hover {
+            background-color: #767676;
+        }
     </style>
 </head>
 
@@ -158,6 +174,7 @@
 
     <!-- Head -->
     <header>
+        <button id="revoir-video-button">Revoir la vidéo</button>
         PORTFOLIO
     </header>
 
@@ -190,47 +207,41 @@
         document.addEventListener('DOMContentLoaded', function () {
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
-            const robotContainer = document.getElementById('robot-container');
-            const robotImage = document.getElementById('robot-image');
-    
+            const revoirButton = document.getElementById('revoir-video-button');
+
             // Vérifie si l'utilisateur a déjà vu la vidéo (clé dans localStorage)
             const hasSeenIntro = localStorage.getItem('hasSeenIntro');
-    
+
             if (hasSeenIntro) {
-                // Si la clé existe, masque directement la vidéo et affiche le site
-                introVideoContainer.style.display = 'none';
-                robotContainer.style.display = 'block'; // Affiche le robot
+                introVideoContainer.style.display = 'none'; // Cache la vidéo si déjà vue
             } else {
-                // Sinon, joue la vidéo d'introduction
-                introVideo.addEventListener('timeupdate', () => {
-                    const videoDuration = introVideo.duration;
-                    const currentTime = introVideo.currentTime;
-    
-                    // Commence le fondu 2 secondes avant la fin
-                    if (videoDuration - currentTime <= 1) {
-                        introVideoContainer.style.opacity = '0';
-                    }
-                });
-    
-                // Masque complètement la vidéo après la transition
-                introVideoContainer.addEventListener('transitionend', () => {
-                    introVideoContainer.style.display = 'none';
-                    robotContainer.style.display = 'block'; // Affiche le robot
-                });
-    
-                // Ajoute la clé dans localStorage une fois la vidéo terminée
-                introVideo.addEventListener('ended', () => {
-                    localStorage.setItem('hasSeenIntro', 'true');
-                });
+                playIntroVideo(); // Joue la vidéo si ce n'est pas déjà vu
             }
 
             // Fonction pour relancer la vidéo
-            robotImage.addEventListener('click', () => {
-                // Réinitialise le stockage local pour revoir la vidéo
-                localStorage.removeItem('hasSeenIntro');
-                location.reload(); // Recharge la page pour recommencer la vidéo
+            revoirButton.addEventListener('click', () => {
+                playIntroVideo(); // Relance la vidéo
+            });
+
+            function playIntroVideo() {
+                localStorage.removeItem('hasSeenIntro'); // Supprime l'indicateur de visionnage
+                introVideoContainer.style.display = 'flex'; // Affiche le conteneur vidéo
+                introVideo.currentTime = 0; // Recommence la vidéo au début
+                introVideo.play(); // Joue la vidéo
+            }
+
+            // Quand la vidéo se termine
+            introVideo.addEventListener('ended', () => {
+                introVideoContainer.style.opacity = '0'; // Transition douce pour cacher la vidéo
+                introVideoContainer.addEventListener('transitionend', () => {
+                    introVideoContainer.style.display = 'none'; // Cache complètement
+                });
+
+                localStorage.setItem('hasSeenIntro', 'true'); // Marque la vidéo comme vue
             });
         });
+
+
     </script>
 
 </body>
