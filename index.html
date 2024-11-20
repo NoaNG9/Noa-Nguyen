@@ -103,21 +103,23 @@
         }
 
 
-        /* Style pour la vidéo d'introduction */
+        /* Conteneur de la vidéo */
         #intro-video {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 1000; /* Par-dessus tout le contenu */
+            z-index: 1000;
+            /* Par-dessus tout */
             display: flex;
             justify-content: center;
             align-items: center;
             background-color: black;
             overflow: hidden;
             opacity: 1;
-            animation: fadeOut 5s ease-in-out forwards; /* Animation de fondu */
+            transition: opacity 2s ease-in-out;
+            /* Fondu en douceur */
         }
 
         /* La vidéo en plein écran */
@@ -126,17 +128,6 @@
             height: 100%;
             object-fit: cover;
         }
-
-        /* Animation de fondu */
-        @keyframes fadeOut {
-            0% {
-                opacity: 1;
-            }
-
-            100% {
-                opacity: 0;
-            }
-        }
     </style>
 </head>
 
@@ -144,11 +135,12 @@
 
     <!-- Vidéo d'introduction -->
     <div id="intro-video">
-        <video autoplay muted playsinline loop>
+        <video id="video-intro" autoplay muted playsinline>
             <source src="MEDIA/introduction.mp4" type="video/mp4">
             Votre navigateur ne supporte pas les vidéos HTML5.
         </video>
     </div>
+
 
 
     <!-- Head -->
@@ -183,15 +175,28 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const introVideo = document.getElementById('intro-video');
-            
-            // Supprime l'élément vidéo après l'animation
-            introVideo.addEventListener('animationend', () => {
-                introVideo.style.display = 'none';
+            const introVideoContainer = document.getElementById('intro-video');
+            const introVideo = document.getElementById('video-intro');
+    
+            // Quand la vidéo approche de la fin, déclenche le fondu
+            introVideo.addEventListener('timeupdate', () => {
+                const videoDuration = introVideo.duration; // Durée totale de la vidéo
+                const currentTime = introVideo.currentTime; // Temps actuel de lecture
+    
+                // Commence le fondu 2 secondes avant la fin de la vidéo
+                if (videoDuration - currentTime <= 2) {
+                    introVideoContainer.style.opacity = '0'; // Réduit l'opacité pour le fondu
+                }
+            });
+    
+            // Masque complètement la vidéo une fois l'animation terminée
+            introVideoContainer.addEventListener('transitionend', () => {
+                introVideoContainer.style.display = 'none';
             });
         });
     </script>
     
+
 </body>
 
 </html>
