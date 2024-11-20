@@ -128,32 +128,19 @@
             object-fit: cover;
         }
 
-        /* Robot et pancarte */
+        /* Robot */
         #robot-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 100;
             display: none; /* Cacher par défaut */
+            cursor: pointer;
         }
 
         #robot-container img {
             width: 100px;
             height: 100px;
-        }
-
-        #pancarte {
-            position: absolute;
-            bottom: 20px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 16px;
-            color: white;
-            background-color: #333;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
         }
 
     </style>
@@ -199,10 +186,9 @@
         </div>
     </footer>
 
-    <!-- Robot et pancarte -->
+    <!-- Robot -->
     <div id="robot-container">
-        <img src="MEDIA/robot_reload_video_intro.png" alt="Robot">
-        <div id="pancarte">Revoir la vidéo</div>
+        <img src="MEDIA/robot_reload_video_intro.png" alt="Robot" id="robot-image">
     </div>
 
     <script>
@@ -210,7 +196,7 @@
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
             const robotContainer = document.getElementById('robot-container');
-            const pancarte = document.getElementById('pancarte');
+            const robotImage = document.getElementById('robot-image');
     
             // Vérifie si l'utilisateur a déjà vu la vidéo (clé dans localStorage)
             const hasSeenIntro = localStorage.getItem('hasSeenIntro');
@@ -244,7 +230,7 @@
             }
 
             // Fonction pour relancer la vidéo
-            pancarte.addEventListener('click', () => {
+            robotImage.addEventListener('click', () => {
                 // Réinitialise le stockage local pour revoir la vidéo
                 localStorage.removeItem('hasSeenIntro');
                 location.reload(); // Recharge la page pour recommencer la vidéo
