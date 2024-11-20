@@ -102,6 +102,7 @@
             cursor: pointer;
         }
 
+
         /* Conteneur de la vidéo */
         #intro-video {
             position: fixed;
@@ -110,6 +111,7 @@
             width: 100%;
             height: 100%;
             z-index: 1000;
+            /* Par-dessus tout */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -117,6 +119,7 @@
             overflow: hidden;
             opacity: 1;
             transition: opacity 2s ease-in-out;
+            /* Fondu en douceur */
         }
 
         /* La vidéo en plein écran */
@@ -137,6 +140,8 @@
             Votre navigateur ne supporte pas les vidéos HTML5.
         </video>
     </div>
+
+
 
     <!-- Head -->
     <header>
@@ -172,44 +177,22 @@
         document.addEventListener('DOMContentLoaded', function () {
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
-
-            // Récupérer l'heure de la dernière visite et la dernière fois que la vidéo a été vue
-            const lastVisitTime = localStorage.getItem('lastVisitTime');
-            const currentTime = Date.now();
-            const videoSeenTime = localStorage.getItem('videoSeenTime');
-            const videoDuration = introVideo.duration; // Durée totale de la vidéo
-
-            // Vérifier si la vidéo doit être montrée (plus de 2 minutes depuis la dernière visite ou si c'est la première visite)
-            const twoMinutesPassed = lastVisitTime && (currentTime - lastVisitTime > 120000); // 2 minutes = 120 000 ms
-
-            const shouldShowVideo = !videoSeenTime || twoMinutesPassed;
-
-            if (shouldShowVideo) {
-                // Afficher la vidéo si elle n'a pas encore été vue ou s'il y a eu plus de 2 minutes depuis la dernière visite
-                introVideoContainer.style.display = 'flex';
-
-                // Lorsque la vidéo approche de la fin, déclenche le fondu
-                introVideo.addEventListener('timeupdate', () => {
-                    const currentTime = introVideo.currentTime;
-
-                    // Commence le fondu 2 secondes avant la fin de la vidéo
-                    if (videoDuration - currentTime <= 2) {
-                        introVideoContainer.style.opacity = '0'; // Réduit l'opacité pour le fondu
-                    }
-                });
-
-                // Masque complètement la vidéo une fois l'animation terminée
-                introVideoContainer.addEventListener('transitionend', () => {
-                    introVideoContainer.style.display = 'none';
-                    localStorage.setItem('videoSeenTime', Date.now()); // Marque la vidéo comme vue
-                });
-            } else {
-                // Si la vidéo ne doit pas être montrée, cacher la vidéo immédiatement
+    
+            // Quand la vidéo approche de la fin, déclenche le fondu
+            introVideo.addEventListener('timeupdate', () => {
+                const videoDuration = introVideo.duration; // Durée totale de la vidéo
+                const currentTime = introVideo.currentTime; // Temps actuel de lecture
+    
+                // Commence le fondu 2 secondes avant la fin de la vidéo
+                if (videoDuration - currentTime <= 2) {
+                    introVideoContainer.style.opacity = '0'; // Réduit l'opacité pour le fondu
+                }
+            });
+    
+            // Masque complètement la vidéo une fois l'animation terminée
+            introVideoContainer.addEventListener('transitionend', () => {
                 introVideoContainer.style.display = 'none';
-            }
-
-            // Enregistrer l'heure de la dernière visite
-            localStorage.setItem('lastVisitTime', currentTime);
+            });
         });
     </script>
 
