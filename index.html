@@ -183,7 +183,7 @@
             const currentTime = Date.now();
 
             // Vérifier si l'heure de la dernière visite est plus ancienne que 1 minute (60000ms)
-            const oneMinutePassed = lastVisitTime && (currentTime - lastVisitTime > 60000);
+            const oneMinutePassed = lastVisitTime && (currentTime - lastVisitTime > 30000);
 
             // Vérifier si l'utilisateur a déjà vu la vidéo ou si 1 minute s'est écoulée
             const hasSeenIntro = localStorage.getItem('hasSeenIntro');
