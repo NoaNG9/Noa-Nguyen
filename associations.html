@@ -118,9 +118,74 @@
         .home-button img:hover {
             transform: scale(1.1);
         }
+
+        /* Conteneur du robot */
+        #loading-robot {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 1;
+            animation: fadeOut 1s ease-in-out forwards;
+            animation-delay: 5s;
+            /* Attend que la vidéo d'intro se termine */
+        }
+
+        /* Image du robot */
+        #loading-robot img {
+            width: 150px;
+            height: auto;
+            animation: bounce 1.5s infinite;
+            /* Le robot saute */
+        }
+
+        /* Texte "Chargement..." */
+        #loading-robot p {
+            font-size: 1.2em;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Animation du robot qui saute */
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Animation de disparition */
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Robot animé -->
+    <div id="loading-robot">
+        <img src="MEDIA/chargement.gif" alt="Loading robot">
+        <p>Chargement...</p>
+    </div>
 
     <!-- Head -->
     <header>
@@ -152,5 +217,15 @@
         </div>
     </footer>
 
+    <script>
+        window.addEventListener('load', function () {
+            const loadingRobot = document.getElementById('loading-robot');
+
+            // Supprime l'élément après l'animation
+            loadingRobot.addEventListener('animationend', () => {
+                loadingRobot.style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html>
