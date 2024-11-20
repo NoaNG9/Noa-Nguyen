@@ -178,23 +178,37 @@
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
     
-            // Quand la vidéo approche de la fin, déclenche le fondu
-            introVideo.addEventListener('timeupdate', () => {
-                const videoDuration = introVideo.duration; // Durée totale de la vidéo
-                const currentTime = introVideo.currentTime; // Temps actuel de lecture
+            // Vérifie si l'utilisateur a déjà vu la vidéo (clé dans localStorage)
+            const hasSeenIntro = localStorage.getItem('hasSeenIntro');
     
-                // Commence le fondu 2 secondes avant la fin de la vidéo
-                if (videoDuration - currentTime <= 1) {
-                    introVideoContainer.style.opacity = '0'; // Réduit l'opacité pour le fondu
-                }
-            });
-    
-            // Masque complètement la vidéo une fois l'animation terminée
-            introVideoContainer.addEventListener('transitionend', () => {
+            if (hasSeenIntro) {
+                // Si la clé existe, masque directement la vidéo et affiche le site
                 introVideoContainer.style.display = 'none';
-            });
+            } else {
+                // Sinon, joue la vidéo d'introduction
+                introVideo.addEventListener('timeupdate', () => {
+                    const videoDuration = introVideo.duration;
+                    const currentTime = introVideo.currentTime;
+    
+                    // Commence le fondu 2 secondes avant la fin
+                    if (videoDuration - currentTime <= 2) {
+                        introVideoContainer.style.opacity = '0';
+                    }
+                });
+    
+                // Masque complètement la vidéo après la transition
+                introVideoContainer.addEventListener('transitionend', () => {
+                    introVideoContainer.style.display = 'none';
+                });
+    
+                // Ajoute la clé dans localStorage une fois la vidéo terminée
+                introVideo.addEventListener('ended', () => {
+                    localStorage.setItem('hasSeenIntro', 'true');
+                });
+            }
         });
     </script>
+    
     
 
 </body>
