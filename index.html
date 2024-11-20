@@ -178,14 +178,21 @@
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
 
-            // Vérifie si l'utilisateur a déjà vu la vidéo (clé dans localStorage)
+            // Récupérer l'heure de la dernière visite
+            const lastVisitTime = localStorage.getItem('lastVisitTime');
+            const currentTime = Date.now();
+
+            // Vérifier si l'heure de la dernière visite est plus ancienne que 1 minute (60000ms)
+            const oneMinutePassed = lastVisitTime && (currentTime - lastVisitTime > 60000);
+
+            // Vérifier si l'utilisateur a déjà vu la vidéo ou si 1 minute s'est écoulée
             const hasSeenIntro = localStorage.getItem('hasSeenIntro');
 
-            if (hasSeenIntro) {
-                // Si la clé existe, masque directement la vidéo et affiche le site
+            if (hasSeenIntro && !oneMinutePassed) {
+                // Si l'utilisateur a déjà vu la vidéo et moins de 1 minute s'est écoulée, masque la vidéo
                 introVideoContainer.style.display = 'none';
             } else {
-                // Sinon, joue la vidéo d'introduction
+                // Sinon, affiche la vidéo
                 introVideo.addEventListener('timeupdate', () => {
                     const videoDuration = introVideo.duration;
                     const currentTime = introVideo.currentTime;
@@ -203,13 +210,13 @@
 
                 // Ajoute la clé dans localStorage une fois la vidéo terminée
                 introVideo.addEventListener('ended', () => {
+                    // Enregistre la dernière heure de visite
+                    localStorage.setItem('lastVisitTime', Date.now());
                     localStorage.setItem('hasSeenIntro', 'true');
                 });
             }
         });
     </script>
-
-    
 
 </body>
 
