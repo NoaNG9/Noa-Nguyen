@@ -102,7 +102,6 @@
             cursor: pointer;
         }
 
-
         /* Conteneur de la vidéo */
         #intro-video {
             position: fixed;
@@ -128,6 +127,35 @@
             height: 100%;
             object-fit: cover;
         }
+
+        /* Robot et pancarte */
+        #robot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+            display: none; /* Cacher par défaut */
+        }
+
+        #robot-container img {
+            width: 100px;
+            height: 100px;
+        }
+
+        #pancarte {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 16px;
+            color: white;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
     </style>
 </head>
 
@@ -140,8 +168,6 @@
             Votre navigateur ne supporte pas les vidéos HTML5.
         </video>
     </div>
-
-
 
     <!-- Head -->
     <header>
@@ -173,10 +199,18 @@
         </div>
     </footer>
 
+    <!-- Robot et pancarte -->
+    <div id="robot-container">
+        <img src="MEDIA/robot.png" alt="Robot">
+        <div id="pancarte">Revoir la vidéo</div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
+            const robotContainer = document.getElementById('robot-container');
+            const pancarte = document.getElementById('pancarte');
     
             // Vérifie si l'utilisateur a déjà vu la vidéo (clé dans localStorage)
             const hasSeenIntro = localStorage.getItem('hasSeenIntro');
@@ -184,6 +218,7 @@
             if (hasSeenIntro) {
                 // Si la clé existe, masque directement la vidéo et affiche le site
                 introVideoContainer.style.display = 'none';
+                robotContainer.style.display = 'block'; // Affiche le robot
             } else {
                 // Sinon, joue la vidéo d'introduction
                 introVideo.addEventListener('timeupdate', () => {
@@ -199,6 +234,7 @@
                 // Masque complètement la vidéo après la transition
                 introVideoContainer.addEventListener('transitionend', () => {
                     introVideoContainer.style.display = 'none';
+                    robotContainer.style.display = 'block'; // Affiche le robot
                 });
     
                 // Ajoute la clé dans localStorage une fois la vidéo terminée
@@ -206,6 +242,13 @@
                     localStorage.setItem('hasSeenIntro', 'true');
                 });
             }
+
+            // Fonction pour relancer la vidéo
+            pancarte.addEventListener('click', () => {
+                // Réinitialise le stockage local pour revoir la vidéo
+                localStorage.removeItem('hasSeenIntro');
+                location.reload(); // Recharge la page pour recommencer la vidéo
+            });
         });
     </script>
 
