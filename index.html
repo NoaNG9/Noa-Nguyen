@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,9 +101,55 @@
             height: 25px;
             cursor: pointer;
         }
+
+
+        /* Style pour la vidéo d'introduction */
+        #intro-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000; /* Par-dessus tout le contenu */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            overflow: hidden;
+            opacity: 1;
+            animation: fadeOut 5s ease-in-out forwards; /* Animation de fondu */
+        }
+
+        /* La vidéo en plein écran */
+        #intro-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Animation de fondu */
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
     </style>
 </head>
+
 <body>
+
+    <!-- Vidéo d'introduction -->
+    <div id="intro-video">
+        <video autoplay muted playsinline loop>
+            <source src="MEDIA/introduction.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas les vidéos HTML5.
+        </video>
+    </div>
+
 
     <!-- Head -->
     <header>
@@ -113,7 +160,7 @@
     <div class="profile-section">
         <img src="MEDIA/photo_profil.jpg" alt="Photo de profil" class="profile-photo">
         <div class="name">Noa Nguyen-Heberle</div>
-        
+
         <div class="buttons">
             <a href="projets.html"><button>Projets</button></a>
             <a href="associations.html"><button>Associations</button></a>
@@ -134,5 +181,17 @@
         </div>
     </footer>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const introVideo = document.getElementById('intro-video');
+            
+            // Supprime l'élément vidéo après l'animation
+            introVideo.addEventListener('animationend', () => {
+                introVideo.style.display = 'none';
+            });
+        });
+    </script>
+    
 </body>
+
 </html>
