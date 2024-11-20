@@ -182,13 +182,12 @@
             // Vérifie si l'utilisateur est sur la page d'accueil
             const isHomePage = window.location.pathname === '/index.html' || window.location.pathname === '/';
 
-            // Vérifie si la vidéo doit être jouée
+            // Si la sessionStorage contient "hasSeenIntro", la vidéo ne sera pas montrée
             const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
-            const isReload = performance.navigation.type === performance.navigation.TYPE_RELOAD;
 
-            // Si l'utilisateur est sur la page d'accueil et n'a pas encore vu la vidéo ou si la page a été rechargée
-            if (isHomePage && (hasSeenIntro !== 'true' || isReload)) {
-                // La vidéo se lance
+            // Si l'utilisateur est sur la page d'accueil et la vidéo n'a pas encore été vue
+            if (isHomePage && hasSeenIntro !== 'true') {
+                // Afficher la vidéo
                 introVideoContainer.style.display = 'flex';
                 
                 introVideo.addEventListener('timeupdate', () => {
@@ -212,7 +211,7 @@
                     sessionStorage.setItem('hasSeenIntro', 'true');
                 });
             } else {
-                // Si l'utilisateur revient via les boutons, la vidéo est déjà passée (elle ne se lance pas)
+                // Si l'utilisateur est sur la page d'accueil mais que la vidéo a déjà été vue ou si la vidéo a déjà été lue
                 introVideoContainer.style.display = 'none';
                 mainContent.style.opacity = '1'; // Montre immédiatement le contenu
             }
