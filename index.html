@@ -177,44 +177,22 @@
         document.addEventListener('DOMContentLoaded', function () {
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
-
-            // Récupérer l'heure de la dernière visite
-            const lastVisitTime = localStorage.getItem('lastVisitTime');
-            const currentTime = Date.now();
-
-            // Vérifier si l'heure de la dernière visite est plus ancienne que 1 minute (60000ms)
-            const oneMinutePassed = lastVisitTime && (currentTime - lastVisitTime > 30000);
-
-            // Vérifier si l'utilisateur a déjà vu la vidéo ou si 1 minute s'est écoulée
-            const hasSeenIntro = localStorage.getItem('hasSeenIntro');
-
-            if (hasSeenIntro && !oneMinutePassed) {
-                // Si l'utilisateur a déjà vu la vidéo et moins de 1 minute s'est écoulée, masque la vidéo
+    
+            // Quand la vidéo approche de la fin, déclenche le fondu
+            introVideo.addEventListener('timeupdate', () => {
+                const videoDuration = introVideo.duration; // Durée totale de la vidéo
+                const currentTime = introVideo.currentTime; // Temps actuel de lecture
+    
+                // Commence le fondu 2 secondes avant la fin de la vidéo
+                if (videoDuration - currentTime <= 2) {
+                    introVideoContainer.style.opacity = '0'; // Réduit l'opacité pour le fondu
+                }
+            });
+    
+            // Masque complètement la vidéo une fois l'animation terminée
+            introVideoContainer.addEventListener('transitionend', () => {
                 introVideoContainer.style.display = 'none';
-            } else {
-                // Sinon, affiche la vidéo
-                introVideo.addEventListener('timeupdate', () => {
-                    const videoDuration = introVideo.duration;
-                    const currentTime = introVideo.currentTime;
-
-                    // Commence le fondu 2 secondes avant la fin
-                    if (videoDuration - currentTime <= 2) {
-                        introVideoContainer.style.opacity = '0';
-                    }
-                });
-
-                // Masque complètement la vidéo après la transition
-                introVideoContainer.addEventListener('transitionend', () => {
-                    introVideoContainer.style.display = 'none';
-                });
-
-                // Ajoute la clé dans localStorage une fois la vidéo terminée
-                introVideo.addEventListener('ended', () => {
-                    // Enregistre la dernière heure de visite
-                    localStorage.setItem('lastVisitTime', Date.now());
-                    localStorage.setItem('hasSeenIntro', 'true');
-                });
-            }
+            });
         });
     </script>
 
