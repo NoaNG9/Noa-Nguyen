@@ -177,41 +177,47 @@
         document.addEventListener('DOMContentLoaded', function () {
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
-    
-            // Vérifie si l'URL contient le paramètre "skipIntro"
-            const urlParams = new URLSearchParams(window.location.search);
-            const skipIntro = urlParams.get('skipIntro');
-    
-            if (skipIntro === 'true') {
-                // Si le paramètre est présent, masque la vidéo directement
-                introVideoContainer.style.display = 'none';
-            } else {
-                // Sinon, joue la vidéo normalement
+            const mainContent = document.getElementById('main-content');
+
+            // Vérifie si l'utilisateur est sur la page d'accueil
+            const isHomePage = window.location.pathname === '/index.html' || window.location.pathname === '/';
+
+            // Vérifie si la vidéo doit être jouée
+            const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+            const isReload = performance.navigation.type === performance.navigation.TYPE_RELOAD;
+
+            // Si l'utilisateur est sur la page d'accueil et n'a pas encore vu la vidéo ou si la page a été rechargée
+            if (isHomePage && (hasSeenIntro !== 'true' || isReload)) {
+                // La vidéo se lance
+                introVideoContainer.style.display = 'flex';
+                
                 introVideo.addEventListener('timeupdate', () => {
                     const videoDuration = introVideo.duration;
                     const currentTime = introVideo.currentTime;
-    
+
                     // Commence le fondu 2 secondes avant la fin
                     if (videoDuration - currentTime <= 2) {
                         introVideoContainer.style.opacity = '0';
+                        mainContent.style.opacity = '1'; // Montre progressivement le contenu principal
                     }
                 });
-    
+
                 // Masque complètement la vidéo après la transition
                 introVideoContainer.addEventListener('transitionend', () => {
                     introVideoContainer.style.display = 'none';
                 });
-    
-                // Ajoute la clé dans localStorage une fois la vidéo terminée
+
+                // Marque la vidéo comme "vue" dans sessionStorage après la fin de la vidéo
                 introVideo.addEventListener('ended', () => {
-                    localStorage.setItem('hasSeenIntro', 'true');
+                    sessionStorage.setItem('hasSeenIntro', 'true');
                 });
+            } else {
+                // Si l'utilisateur revient via les boutons, la vidéo est déjà passée (elle ne se lance pas)
+                introVideoContainer.style.display = 'none';
+                mainContent.style.opacity = '1'; // Montre immédiatement le contenu
             }
         });
     </script>
-    
-    
-    
 
 </body>
 
