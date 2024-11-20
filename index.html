@@ -177,19 +177,15 @@
         document.addEventListener('DOMContentLoaded', function () {
             const introVideoContainer = document.getElementById('intro-video');
             const introVideo = document.getElementById('video-intro');
-            const mainContent = document.getElementById('main-content');
 
-            // Vérifie si l'utilisateur est sur la page d'accueil
-            const isHomePage = window.location.pathname === '/index.html' || window.location.pathname === '/';
+            // Vérifie si l'utilisateur a déjà vu la vidéo (clé dans localStorage)
+            const hasSeenIntro = localStorage.getItem('hasSeenIntro');
 
-            // Si la sessionStorage contient "hasSeenIntro", la vidéo ne sera pas montrée
-            const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
-
-            // Si l'utilisateur est sur la page d'accueil et la vidéo n'a pas encore été vue
-            if (isHomePage && hasSeenIntro !== 'true') {
-                // Afficher la vidéo
-                introVideoContainer.style.display = 'flex';
-                
+            if (hasSeenIntro) {
+                // Si la clé existe, masque directement la vidéo et affiche le site
+                introVideoContainer.style.display = 'none';
+            } else {
+                // Sinon, joue la vidéo d'introduction
                 introVideo.addEventListener('timeupdate', () => {
                     const videoDuration = introVideo.duration;
                     const currentTime = introVideo.currentTime;
@@ -197,7 +193,6 @@
                     // Commence le fondu 2 secondes avant la fin
                     if (videoDuration - currentTime <= 2) {
                         introVideoContainer.style.opacity = '0';
-                        mainContent.style.opacity = '1'; // Montre progressivement le contenu principal
                     }
                 });
 
@@ -206,17 +201,15 @@
                     introVideoContainer.style.display = 'none';
                 });
 
-                // Marque la vidéo comme "vue" dans sessionStorage après la fin de la vidéo
+                // Ajoute la clé dans localStorage une fois la vidéo terminée
                 introVideo.addEventListener('ended', () => {
-                    sessionStorage.setItem('hasSeenIntro', 'true');
+                    localStorage.setItem('hasSeenIntro', 'true');
                 });
-            } else {
-                // Si l'utilisateur est sur la page d'accueil mais que la vidéo a déjà été vue ou si la vidéo a déjà été lue
-                introVideoContainer.style.display = 'none';
-                mainContent.style.opacity = '1'; // Montre immédiatement le contenu
             }
         });
     </script>
+
+    
 
 </body>
 
