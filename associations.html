@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,7 +17,7 @@
             background-color: #f5f5f5;
         }
 
-        /* Head */
+        /* Header */
         header {
             width: 100%;
             background-color: #000000;
@@ -25,60 +26,55 @@
             padding: 20px 0;
             font-size: 2.5em;
             font-weight: bold;
+            position: relative;
         }
 
-        /* Body */
-        .profile-section {
+        /* Cartes des projets */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px;
+            width: 80%;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
             text-align: center;
-            margin: 40px 0;
-            flex-grow: 1;
-        }
-
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .name {
-            margin-top: 15px;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        .buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .buttons a {
-            text-decoration: none;
-        }
-
-        .buttons button {
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
             cursor: pointer;
-            background-color: #767676;
-            color: white;
-            transition: background-color 0.3s;
+            transition: transform 0.3s;
+            color: black;
+            text-decoration:
+                text-decoration-color: black;
         }
 
-        .buttons button:hover {
-            background-color: #357ab8;
+        .project-card:hover {
+            transform: scale(1.05);
         }
 
-        /* Foot */
+        .project-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .project-name {
+            padding: 10px;
+            font-weight: bold;
+            font-size: 1.2em;
+            color: black;
+        }
+
+        /* Footer */
         footer {
             width: 100%;
             text-align: center;
             padding: 20px 0;
             background-color: #eee;
+            margin-top: auto;
         }
 
         .contact-title {
@@ -179,6 +175,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <!-- Robot animé -->
@@ -192,9 +189,18 @@
         ASSOCIATIONS
     </header>
 
-    <!-- Body -->
-    <div class="profile-section">
-        <p>Contenu de la page Associations...</p>
+    <!-- Cartes de projets -->
+    <div class="projects-grid">
+        <!-- Exemple de carte de projet -->
+        <a href="assosGSL.html" class="project-card">
+            <img src="MEDIA/Greenstreetlille.jpeg" alt="Assos GSL">
+            <div class="project-name">Green Street Lille</div>
+        </a>
+        <a href="assosHGS.html" class="project-card">
+            <img src="MEDIA/Logo_hgs.png" alt="Assos HGS">
+            <div class="project-name">Hungerias</div>
+        </a>
+        <!-- Ajouter d'autres assos ici de la même manière -->
     </div>
 
     <!-- Button maison pour revenir à la page d'accueil -->
@@ -228,4 +234,5 @@
         });
     </script>
 </body>
+
 </html>
