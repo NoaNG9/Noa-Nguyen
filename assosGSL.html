@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voiture télécommandée</title>
+    <title>Green Street Lille</title>
     <style>
         /* Styles identiques */
         body {
@@ -82,7 +82,6 @@
             margin-bottom: 20px;
             text-align: center;
             margin-top: 20px;
-            /* Centre le texte de la carte */
         }
 
         /* Section vidéo */
@@ -95,9 +94,24 @@
 
         .video {
             width: 70%;
-            /* Réduit la taille de la vidéo */
             max-width: 500px;
-            /* Taille maximale pour les grands écrans */
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Section image */
+        .image-section {
+            margin-top: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .image {
+            width: 70%; /* Réduit la taille de l'image */
+            max-width: 500px; /* Taille maximale pour les grands écrans */
             height: auto;
             object-fit: cover;
             border-radius: 8px;
@@ -164,7 +178,7 @@
     <!-- Header avec bouton de retour -->
     <header>
         <div class="back-button">
-            <a href="projets.html">
+            <a href="associations.html">
                 <img src="MEDIA/back.jpg" alt="Retour">
             </a>
         </div>
@@ -182,94 +196,94 @@
                 <img src="MEDIA/horloge.png" alt="Temps nécessaire">
                 <div class="project-info-text">10 mois</div>
             </div>
-            <div class="project-info-item">
-                <img src="MEDIA/programmation.png" alt="Langages utilisés">
-                <div class="project-info-text">Langage assembleur</div>
-            </div>
-            <div class="project-info-item">
-                <img src="MEDIA/logiciel.png" alt="Langages utilisés">
-                <div class="project-info-text">Altium, Fusion360, MplabX</div>
-            </div>
         </div>
     </div>
 
-    <!-- Section vidéo -->
-    <div class="video-section">
-        <video class="video" autoplay muted loop controls>
-            <source src="MEDIA/Greenstreetlille.jpeg" type="video/mp4">
-            Votre navigateur ne supporte pas la lecture de vidéos.
-        </video>
+   <!-- Section image -->
+    <div class="image-section">
+        <img class="image" src="MEDIA/Greenstreetlille.jpeg" alt="Image du projet">
     </div>
 
     <!-- Section rapport de projet -->
     <div class="report-section">
         <h2>1. Introduction</h2>
-        <p>Le projet s'inscrit dans le cadre de l'application des systèmes embarqués, visant à développer un dispositif
-            autonome et performant. Nous avons réalisé une voiture télécommandée en suivant des étapes méthodiques, avec
-            une attention particulière à la coordination entre les aspects matériels et logiciels. Ce projet a permis de
-            maîtriser les technologies modernes en électronique embarquée et de comprendre les interactions entre
-            capteurs, actionneurs, et modules de communication sans fil.</p>
+        <p>Green Street Lille est une association à but non lucratif axée sur la promotion de l’écologie en milieu urbain. Elle se distingue par des projets de végétalisation, visant à embellir les espaces publics tout en luttant contre la pollution atmosphérique et sonore. Ces initiatives permettent de sensibiliser les citadins, en particulier les jeunes, à l’importance de la nature et de la durabilité environnementale.</p>
 
-        <h2>2. Objectifs du Projet</h2>
+        <h2>2. Objectif de l’Association</h2>
+        <p>L’objectif principal de Green Street Lille est de transformer les zones urbaines en espaces plus sains et agréables grâce à des plantations stratégiques et des actions éducatives. En impliquant la communauté, l’association aspire à :</p>
         <ul>
-            <li>Créer une voiture télécommandée capable de se déplacer, de changer de direction, et de transmettre des
-                données visuelles en temps réel.</li>
-            <li>Apprendre l'implémentation pratique des composants électroniques dans un système autonome.</li>
-            <li>Concevoir un schéma électronique, construire le prototype, tester et optimiser la voiture pour atteindre
-                les performances attendues.</li>
+            <li>Réduire l’impact négatif de la pollution sur la santé.</li>
+            <li>Sensibiliser les habitants, notamment les enfants, à la biodiversité.</li>
+            <li>Offrir des solutions pratiques pour améliorer la qualité de vie en ville.</li>
         </ul>
 
-        <h2>3. Processus de Développement</h2>
+        <h2>3. Projets Mis en Place</h2>
+        <h3>a. Création de bacs de plantation avec le lycée Saint-Paul :</h3>
+        <p>Ce projet a impliqué des lycéens dans la conception de bacs végétalisés destinés aux espaces publics, en alliant apprentissage pratique et sensibilisation environnementale.</p>
+        <h3>b. Réalisation de pots de fleurs pour une conférence au POP Café Wazemmes :</h3>
+        <p>Cette initiative a illustré la présentation écologique lors d’une conférence, en démontrant comment de petits gestes peuvent contribuer à un environnement plus vert.</p>
 
-        <h3>3.1 Recherche</h3>
-        <p>La première phase consistait à étudier les composants nécessaires, en mettant l'accent sur la compatibilité
-            et la performance. Les recherches portaient sur les servomoteurs, moteurs CC, caméras, et modules de
-            communication sans fil, en plus des exigences pour la carte électronique.</p>
-
-        <h3>3.2 Conception du Schéma Électronique</h3>
-        <p>À partir de la recherche, un schéma électronique a été conçu avec le logiciel Altium, prenant en compte les
-            connexions entre le microcontrôleur, les capteurs, et les actionneurs. Nous avons également géré les
-            interfaces de tension et les protocoles de communication pour garantir l’efficacité du système.</p>
-
-        <h3>3.3 Assemblage et Construction</h3>
+        <h2>4. Processus du Projet Bac au Lycée Saint-Paul</h2>
+        <p><strong>Étape 1 : Identification des besoins</strong></p>
         <ul>
-            <li><strong>Mécanique</strong> : Conception et impression d'un modèle 3D pour le châssis, utilisation de
-                matériaux robustes (PLA et TPU) pour assurer la durabilité.</li>
-            <li><strong>Électronique</strong> : Assemblage de la carte électronique dans le FabLab de l’ISEN, usinage et
-                soudure des composants.</li>
+            <li>Évaluer les espaces urbains nécessitant des bacs de plantation.</li>
+            <li>Collaborer avec le lycée pour mobiliser les élèves et les enseignants.</li>
         </ul>
-
-        <h3>3.4 Tests et Optimisation</h3>
-        <p>Des tests rigoureux ont été menés pour vérifier la réactivité des capteurs, la précision des actionneurs, et
-            la stabilité de la communication sans fil. Chaque composant a été ajusté pour assurer une performance fluide
-            du système global.</p>
-
-        <h2>4. Composants Utilisés</h2>
+        <p><strong>Étape 2 : Conception et création</strong></p>
         <ul>
-            <li><strong>Actionneurs</strong> : Servo-moteur MG995 pour le contrôle directionnel, moteur CC pour la
-                propulsion, tous deux gérés par des signaux PWM pour un contrôle précis de la vitesse et de
-                l’orientation.</li>
-            <li><strong>Capteurs</strong> : Caméra OV7670 pour la capture vidéo en temps réel, permettant de transmettre
-                des images au contrôleur de la base via la communication sans fil.</li>
-            <li><strong>Guidage</strong> : Module NRF24L01 pour la transmission sans fil (2,4 GHz) entre la voiture et
-                la station de contrôle, offrant une communication bidirectionnelle avec une portée satisfaisante pour un
-                projet de télécommande.</li>
+            <li>Réalisation des schémas de bacs adaptés aux espaces ciblés.</li>
+            <li>Sélection des matériaux écologiques pour leur fabrication.</li>
         </ul>
+        <p><strong>Étape 3 : Sensibilisation et implication des jeunes</strong></p>
+        <ul>
+            <li>Ateliers pratiques pour enseigner les techniques de plantation et d’entretien.</li>
+            <li>Discussions sur l’importance des plantes pour la biodiversité et la réduction de la pollution.</li>
+        </ul>
+        <p><strong>Étape 4 : Installation</strong></p>
+        <ul>
+            <li>Placement des bacs dans les zones prévues en impliquant la communauté locale.</li>
+        </ul>
+    </div>
 
-        <h2>5. Bilan du Projet</h2>
-        <p>La voiture télécommandée a été réalisée avec succès, remplissant toutes les fonctions de base spécifiées. La
-            coordination entre les actionneurs et les capteurs a permis de contrôler efficacement la direction et la
-            vitesse, et le module de guidage NRF24L01 a permis une communication stable. Le projet a mis en valeur
-            l’importance d’une planification rigoureuse et d’une méthodologie bien structurée pour mener à bien un
-            projet en systèmes embarqués.</p>
+    <!-- Section image -->
+    <div class="image-section">
+        <img class="image" src="MEDIA/GSL_bacStPaul.png" alt="Image du projet">
+    </div>
 
-        <h2>6. Perspectives et Améliorations</h2>
-        <p>Ce projet pourrait être étendu en intégrant des capteurs supplémentaires, comme des capteurs ultrasoniques
-            pour éviter les obstacles, ou en développant une application de commande mobile pour un contrôle en temps
-            réel depuis un smartphone.</p>
+    <div class="report-section">
+        <h2>5. Processus du Projet POP Café Wazemmes</h2>
+        <p><strong>Étape 1 : Préparation du concept</strong></p>
+        <ul>
+            <li>Identifier les besoins de la conférence en termes de décoration et d’illustration écologique.</li>
+            <li>Planifier les types de pots et de plantes à utiliser pour un impact visuel optimal.</li>
+        </ul>
+        <p><strong>Étape 2 : Création des pots</strong></p>
+        <ul>
+            <li>Réalisation de pots décoratifs à partir de matériaux recyclés.</li>
+            <li>Ajout de plantes adaptées à l’environnement intérieur pour la conférence.</li>
+        </ul>
+        <p><strong>Étape 3 : Illustration et installation</strong></p>
+        <ul>
+            <li>Positionnement des pots pour compléter visuellement les thèmes abordés lors de la présentation.</li>
+            <li>Utilisation des pots comme supports éducatifs pour encourager les participants à intégrer des solutions vertes dans leur quotidien.</li>
+        </ul>
+    </div>
 
-        <p>En conclusion, ce projet de voiture télécommandée a non seulement permis d’appliquer des connaissances
-            théoriques, mais également d’acquérir des compétences pratiques en conception de systèmes embarqués.</p>
+    <!-- Section image -->
+    <div class="image-section">
+        <img class="image" src="MEDIA/GSL_popCafé.png" alt="Image du projet">
+    </div>
+
+    <div class="report-section">
+        <h2>6. Bilan, Résultats et Impacts des Projets</h2>
+        <p>- Impact sur la communauté : Ces projets ont renforcé la sensibilisation à l’écologie parmi les jeunes et les habitants de Lille.</p>
+        <p>- Compétences développées : Les participants, notamment les lycéens, ont appris les bases de la plantation et de la gestion de projets environnementaux.</p>
+        <p>- Amélioration des espaces publics : Les bacs et pots installés ont ajouté une touche de verdure aux espaces urbains tout en augmentant la prise de conscience des passants.</p>
+
+        <h2>7. Conclusion</h2>
+        <p>Mon expérience avec Green Street Lille m’a permis de participer activement à des projets concrets et porteurs de sens. Ces initiatives ont illustré comment des actions locales peuvent avoir un impact positif sur l’environnement et la communauté. Je suis fier d’avoir contribué à l’objectif de rendre la ville de Lille plus verte et durable.</p>
+
+        <p>Pour plus de détails et d’illustrations des projets, visitez leur <a href="https://www.instagram.com/green_street_lille/" target="_blank">compte Instagram</a>.</p>
     </div>
 
     <!-- Footer -->
